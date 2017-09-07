@@ -3,14 +3,6 @@ import { connect } from 'dva';
 // import styles from './Test.css';
 import TestComponent from '../components/Test/Test'
 
-// function Test() {
-//   return (
-//     <div className={styles.normal}>
-//       Route Component: Test
-//     </div>
-//   );
-// }
-
 function mapStateToProps(state) {
   return state.test
 }

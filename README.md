@@ -1,4 +1,4 @@
-#get start  
+# get start  
 dva作者：sorrycc
 
 ## 安装dva
@@ -70,26 +70,36 @@ $ npm i babel-plugin-import --save-dev
 
 ## router 
 快速创建router
+
 ```
 dva g route ${namespace}
 ```
 
 ## modal
-快速创建一个modal：  
+快速创建一个modal：
+  
 ```
 dva g model ${namespace}
 ```
 
-export 一个对象
 - namespace
 - state：initState
 - reducers: 处理action 返回新的state
 - effects：
 - subscriptions
 
-## 
+### effects
+主要用于异步请求
 
+- call: 用于调用异步逻辑，支持 promise 
+- put: 获取异步数据后，触发action，将数据写入到state
+- select: 选取state的数据  
 
+详情见API文档
+
+# 遗留待解决的问题
+
+- 逻辑的复用，reducer的复用
 
 # 参考链接
 - [https://github.com/sorrycc/blog/issues/18](https://github.com/sorrycc/blog/issues/18)

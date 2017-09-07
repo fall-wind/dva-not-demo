@@ -1,17 +1,22 @@
 import dva from 'dva';
 import './index.css';
 import { createLogger } from 'redux-logger';
-console.log(process.env.NODE_ENV);
+import { browserHistory } from 'dva/router';
+import { message } from 'antd';
+
 // 1. Initialize
 // use redux-logger
-let app
-if (process.env.NODE_ENV === 'development') {
-  app = dva({
-    onAction: createLogger(),
-  });
-} else {
-  app = dva();
+const ERROR_MSG_DURATION = 3; // 3 秒
+let appObj = {
+  history: browserHistory,
 }
+if (process.env.NODE_ENV === 'development') {
+  appObj.onAction = createLogger()
+} else {
+
+}
+
+const app = dva(appObj)
 
 app.model(require("./models/test"));
 
