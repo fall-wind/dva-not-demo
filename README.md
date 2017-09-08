@@ -74,7 +74,7 @@ const app = dva(opt)
 ```
 
 ### extraReducers
-手动去添加一些redux中间件
+手动去添加一些额外的reducer 公共的reducer的抽象吧
 
 ### extraEnhancers
 指定额外的 StoreEnhancer 
