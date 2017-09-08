@@ -1,7 +1,5 @@
 import userService from '../services/user'
 
-
-
 export default {
   namespace: 'test',
   state: {
@@ -39,5 +37,16 @@ export default {
         data,
       })
     }
-  }
-};
+  },
+  subscriptions: {
+    setup({ dispatch, history }) {
+      // 返回listen函数 以备unlisten
+      return history.listen(({ pathname, query }) => {
+        console.log(pathname, query)
+        if (pathname === '/users') {
+          dispatch({ type: 'fetch', payload: query });
+        }
+      });
+    },
+  },
+}

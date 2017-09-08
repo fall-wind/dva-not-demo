@@ -4,6 +4,15 @@ import IndexPage from './routes/IndexPage';
 
 import Test from "./routes/Test.js";
 
+// 加入modal
+const cached = {};
+function registerModel(app, model) {
+  if (!cached[model.namespace]) {
+    app.model(model);
+    cached[model.namespace] = 1;
+  }
+}
+
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
