@@ -197,8 +197,46 @@ onEffect
 
 # 遗留待解决的问题
 
-- 逻辑的复用，reducer的复用
-  - [https://github.com/dvajs/dva/issues/388](https://github.com/dvajs/dva/issues/388)
+- 按需加载modal
+  - 使用require.ensure
+  - 使用routes={routes} 配置router时候，完全加载不出来
+
+## 逻辑的复用，reducer/modal的复用
+### 通过工厂函数，去创建生成modal
+
+```ecmascript 6
+  function createModel(options) {
+    const { namespace, param } = options;
+    return {
+      namespace: `demo${namespace}`,
+      states: {},
+      reducers: {},
+      effects: {
+        *foo() {
+          // 这里可以根据param来确定下面这个call的参数
+          yield call()
+        }
+      }
+    };
+  }
+  const modelA = createModel({ namespace: 'A', param: { type: 'A' } });
+  const modelB = createModel({ namespace: 'A', param: { type: 'B' } });
+```
+  
+参考：    
+- [https://github.com/dvajs/dva/issues/388](https://github.com/dvajs/dva/issues/388)
+- [https://github.com/dvajs/dva-example-user-dashboard/pull/15](https://github.com/dvajs/dva-example-user-dashboard/pull/15)
+
+
+## 其他  
+
+使用require.ensure()实现按需加载
+
+三个参数：
+  
+- 依赖的模块
+- 回调函数
+- chunkName 
 
 ## 疑问
 
@@ -211,3 +249,6 @@ onEffect
 - [https://github.com/dvajs/dva/blob/master/docs/API_zh-CN.md](https://github.com/dvajs/dva/blob/master/docs/API_zh-CN.md)
 - [https://github.com/dvajs/dva/blob/master/docs/Concepts_zh-CN.md](https://github.com/dvajs/dva/blob/master/docs/Concepts_zh-CN.md)
 - [https://segmentfault.com/a/1190000009800398](https://segmentfault.com/a/1190000009800398)
+- [https://github.com/zuiidea/antd-admin](https://github.com/zuiidea/antd-admin)
+- [https://github.com/dvajs/dva-example-user-dashboard/pull/15](https://github.com/dvajs/dva-example-user-dashboard/pull/15)
+- [https://github.com/dvajs/dva/issues/1](https://github.com/dvajs/dva/issues/1)

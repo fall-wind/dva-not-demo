@@ -28,7 +28,7 @@ export default {
     }
   },
   effects: {
-    *fetch({ page = 1, pageSize = 5 }, { call, put, select }) {
+    *fetch({ page = 1, pageSize = 5 }, { call, put, select, takeEvery }) {
       const state = yield select(state => state);
       console.log(state, 'l am state')
       const { data } = yield call(userService.fetch, { page, pageSize })

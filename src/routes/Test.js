@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'dva';
 import styles from './Test.css';
 import { Button, Input, Table } from 'antd';
+import { Table as YTTable } from '../common'
+console.log(YTTable)
 
 const columns = [
   {
@@ -73,6 +75,7 @@ class Test extends React.Component {
             rowKey={record => record.id}
             pagination={false}
           />
+          <YTTable columns={columns} />
         </div>
       </div>
     );
